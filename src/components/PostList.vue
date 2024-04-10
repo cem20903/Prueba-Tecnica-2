@@ -9,6 +9,7 @@ const postList = ref([])
 
 onMounted(async () => {
   const response = await getPostList()
+  console.log(response, "EN EL COMPONENTE")
   postList.value = response
 })
 
@@ -20,8 +21,17 @@ function goToDetails(id) {
 <template>
   <div class="post--container">
     <div v-for="(post, key) in postList" :key="key" class="post--card">
-      <span>{{ post.title }}</span>
-      <button @click="() => goToDetails(post.id)">Detalles</button>
+      <span>Categoria: {{ post.category }}</span>
+      <div>
+        <RouterLink :to="`/details/${post.fighters.first.id}`">
+          {{ post.fighters.first.name }}
+        </RouterLink>
+        <p>VS</p>
+        <RouterLink :to="`/details/${post.fighters.second.id}`">
+          {{ post.fighters.second.name }}
+        </RouterLink>
+      </div>
+      <button @click="() => goToDetails(post.id)">Detalles del combate</button>
     </div>
   </div>
 </template>
