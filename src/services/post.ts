@@ -15,7 +15,7 @@ async function getPostList() {
     })
 }
 
-async function getPostById(id) {
+async function getPostById(id: number) {
   const res = await fetch(`https://v1.mma.api-sports.io/fighters?id=${id}`, {
     method: "GET",
     headers: {

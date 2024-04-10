@@ -1,6 +1,6 @@
 <script setup>
 import { onMounted, ref } from "vue"
-import { getPostList } from "@/services/post"
+import { getPostList } from "@/services/post.ts"
 import { useRouter } from "vue-router"
 
 const router = useRouter()
