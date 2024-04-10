@@ -16,7 +16,7 @@ defineProps({
 
 <template>
   <div class="card">
-    <div>HelloWorld</div>
+    <div>Prueba</div>
   </div>
 </template>
 
