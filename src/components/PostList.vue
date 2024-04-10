@@ -13,7 +13,6 @@ onMounted(async () => {
 })
 
 function goToDetails(id) {
-  console.log(id, "EL ID")
   router.push({ name: "details", params: { id } })
 }
 </script>
