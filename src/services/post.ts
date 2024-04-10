@@ -1,3 +1,6 @@
+import getFighterList from "./factories/fighterList"
+import getFighterInfo from "./factories/getFighterInfo" 
+
 async function getPostList() {
   return fetch("https://v1.mma.api-sports.io/fights?season=2024", {
     method: "GET",
@@ -8,12 +11,15 @@ async function getPostList() {
   })
     .then(async (res) => {
       const response = await res.json()
-      return response.response.slice(0, 20)
+      return getFighterList(response.response)      
     })
     .catch((err) => {
       console.log(err)
+      return []
     })
 }
+
+ 
 
 async function getPostById(id: number) {
   const res = await fetch(`https://v1.mma.api-sports.io/fighters?id=${id}`, {
@@ -25,7 +31,7 @@ async function getPostById(id: number) {
   })
   const response = await res.json()
 
-  return response.response[0]
+  return getFighterInfo(response.response[0])
 }
 
 export { getPostList, getPostById }

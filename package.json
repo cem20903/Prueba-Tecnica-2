@@ -7,7 +7,7 @@
     "dev": "vite",
     "build": "vite build",
     "preview": "vite preview",
-    "test": "jest"
+    "test": "jest --watchAll"
   },
   "dependencies": {
     "pinia": "^2.1.7",
