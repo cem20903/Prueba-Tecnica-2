@@ -9,7 +9,6 @@ const postList = ref([])
 
 onMounted(async () => {
   const response = await getPostList()
-  console.log(response, "EN EL COMPONENTE")
   postList.value = response
 })
 
