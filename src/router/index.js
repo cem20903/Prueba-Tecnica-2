@@ -7,9 +7,9 @@ const routes = [
     component: () => import("../components/PostList.vue"),
   },
   {
-    name: "Prueba",
-    path: "/prueba",
-    component: () => import("../components/Prueba.vue"),
+    name: "details",
+    path: "/details/:id",
+    component: () => import("../components/PostDetail.vue"),
   },
 ]
 

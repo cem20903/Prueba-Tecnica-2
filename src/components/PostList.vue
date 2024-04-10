@@ -1,6 +1,9 @@
 <script setup>
 import { onMounted, ref } from "vue"
 import { getPostList } from "@/services/post"
+import { useRouter } from "vue-router"
+
+const router = useRouter()
 
 const postList = ref([])
 
@@ -9,15 +12,17 @@ onMounted(async () => {
   postList.value = response
 })
 
-defineProps({
-  msg: String,
-})
+function goToDetails(id) {
+  console.log(id, "EL ID")
+  router.push({ name: "details", params: { id } })
+}
 </script>
 
 <template>
   <div class="post--container">
     <div v-for="(post, key) in postList" :key="key" class="post--card">
       <span>{{ post.title }}</span>
+      <button @click="() => goToDetails(post.id)">Detalles</button>
     </div>
   </div>
 </template>

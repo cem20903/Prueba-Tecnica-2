@@ -5,4 +5,9 @@ async function getPostList() {
   return await response.json()
 }
 
-export { getPostList }
+async function getPostById(id) {
+  const response = await fetch(`${API_URL}/posts/${id}`)
+  return await response.json()
+}
+
+export { getPostList, getPostById }
