@@ -2,14 +2,15 @@
 import { onMounted, ref } from "vue"
 import { getFights } from "@/services/fight.ts"
 import { useRouter } from "vue-router"
+import FightCard from "@/components/FightCard.vue"
 
 const router = useRouter()
 
-const postList = ref([])
+const fightList = ref([])
 
 onMounted(async () => {
   const response = await getFights()
-  postList.value = response
+  fightList.value = response
 })
 
 function goToDetails(id) {
@@ -18,34 +19,25 @@ function goToDetails(id) {
 </script>
 
 <template>
-  <div class="post--container">
-    <div v-for="(post, key) in postList" :key="key" class="post--card">
-      <span>Categoria: {{ post.category }}</span>
-      <div>
-        <RouterLink :to="`/details/${post.fighters.first.id}`">
-          {{ post.fighters.first.name }}
-        </RouterLink>
-        <p>VS</p>
-        <RouterLink :to="`/details/${post.fighters.second.id}`">
-          {{ post.fighters.second.name }}
-        </RouterLink>
-      </div>
-      <button @click="() => goToDetails(post.id)">Detalles del combate</button>
-    </div>
+  <div class="fights--container">
+    <template v-for="(fight, key) in fightList" :key="key">
+      <FightCard :fight="fight" />
+    </template>
   </div>
 </template>
 
 <style scoped>
-.post--container {
+.fights--container {
   display: flex;
+  flex-direction: column;
   gap: 10px;
-  flex-wrap: wrap;
 }
 
-.post--card {
-  padding: 20px;
-  border: 1px solid black;
-  border-radius: 5px;
-  flex-basis: 20%;
+@media (min-width: 1024px) {
+  .fights--container {
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
 }
 </style>

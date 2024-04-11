@@ -12,8 +12,8 @@ const router = useRoute()
 const fighter = ref({})
 
 onMounted(async () => {
-  const response = await getFighterById(router.params.id)
-  fighter.value = response
+  const fighterInfo = await getFighterById(router.params.id)
+  fighter.value = fighterInfo
   store.addFighterVisited()
 })
 
@@ -29,16 +29,42 @@ const weightInKG = computed(() => {
 </script>
 
 <template>
-  <div class="card">
-    <h2>Luchador</h2>
-    <div><img :src="fighter.photo" /></div>
-    <div>Nombre: {{ fighter.name }}</div>
-    <div>Edad: {{ fighter.age }}</div>
-    <div>Altura: {{ fighter.height }}</div>
-    <div>Apodo: {{ fighter.nickname }}</div>
-    <div>Peso: {{ fighter.weight }}</div>
-    <div>Peso:: {{ weightInKG }} kg</div>
+  <div class="fighter--container">
+    <div>
+      <h2>Luchador</h2>
+      <img :src="fighter.photo" />
+    </div>
+    <div class="fighter--info">
+      <div><strong>Nombre:</strong> {{ fighter.name }}</div>
+      <div><strong>Edad:</strong> {{ fighter.age || "No disponible" }}</div>
+      <div><strong>Altura:</strong> {{ fighter.height }}</div>
+      <div><strong>Apodo:</strong> {{ fighter.nickname }}</div>
+      <div><strong>Peso:</strong> {{ fighter.weight }}</div>
+      <div><strong>Peso:</strong> : {{ weightInKG }} kg</div>
+    </div>
   </div>
 </template>
 
-<style scoped></style>
+<style scoped>
+.fighter--container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 10px 0;
+  border: 1px solid black;
+  padding: 10px;
+}
+
+@media (min-width: 1024px) {
+  .fighter--container {
+    flex-direction: row;
+    margin: 10px 0;
+  }
+
+  .fighter--info {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+}
+</style>
