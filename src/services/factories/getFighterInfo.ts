@@ -1,8 +1,9 @@
-function getFighterInfo (figtherInfo: { age: number, height: string, nickname: string, weight: string, photo: string}) {
+function getFighterInfo (figtherInfo: { name: string, age: number, height: string, nickname: string, weight: string, photo: string}) {
 
-const { age, height, nickname, weight, photo } = figtherInfo
+const { name, age, height, nickname, weight, photo } = figtherInfo
   
   return { 
+    name,
     age, 
     height, 
     nickname, 

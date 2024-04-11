@@ -1,7 +1,7 @@
 <script setup>
 import { onMounted, ref } from "vue"
 import { useRoute } from "vue-router"
-import { getFighterById } from "@/services/post"
+import { getFighterById } from "@/services/fight"
 const router = useRoute()
 
 const fighter = ref({})
@@ -14,7 +14,9 @@ onMounted(async () => {
 
 <template>
   <div class="card">
+    <h2>Luchador</h2>
     <div><img :src="fighter.photo" /></div>
+    <div>Nombre: {{ fighter.name }}</div>
     <div>Edad: {{ fighter.age }}</div>
     <div>Altura: {{ fighter.height }}</div>
     <div>Apodo: {{ fighter.nickname }}</div>

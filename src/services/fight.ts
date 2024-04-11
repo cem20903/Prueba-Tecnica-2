@@ -30,14 +30,21 @@ async function getFights() {
  
 
 async function getFighterById(id: number) {
-  console.log('Llamada Asincrona getLuchadores por ID')
-  const res = await fetch(`${API_URL}/fighters?id=${id}`, {
+  
+  return fetch(`${API_URL}/fighters?id=${id}`, {
     method: "GET",
     headers
   })
-  const response = await res.json()
+    .then(async (res) => {
+      const response = await res.json()
+      return getFighterInfo(response.response[0])
+  })
+    .catch((err) => {
+      console.log(err)
+      return {}
+  })
+  
 
-  return getFighterInfo(response.response[0])
 }
 
 export { getFights, getFighterById }
