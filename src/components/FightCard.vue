@@ -1,16 +1,10 @@
 <script setup lang="ts">
-import { onMounted, ref, defineProps } from "vue"
-import { getFights } from "@/services/fight.ts"
-import { useRouter } from "vue-router"
+import { defineProps } from "vue"
 
-const router = useRouter()
+defineProps({ fighter: { type: Object, required: true } })
 
-defineProps({ fight: { type: Object, required: true } })
-
-const postList = ref([])
-
-function goToDetails(id) {
-  router.push({ name: "details", params: { id } })
+function goToDetails(id: number) {
+  // Ir a detalle De combate
 }
 </script>
 
