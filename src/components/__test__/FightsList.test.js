@@ -2,6 +2,7 @@ import { render, screen } from "@testing-library/vue"
 import { createRouter, createWebHistory } from "vue-router"
 import { routes } from "../../router"
 import App from "../../App.vue"
+import { createPinia } from "pinia"
 import "@testing-library/jest-dom"
 
 const fetchMock = jest.fn()
@@ -52,15 +53,17 @@ describe("Fights List", () => {
 
     fetchMock.mockImplementation(() => mockFetch)
 
+    const pinia = createPinia()
+
     render(App, {
       global: {
-        plugins: [router],
+        plugins: [router, pinia],
       },
     })
 
     await screen.findByRole("button", { name: "Detalles del combate" })
 
-    const categoryText = screen.getByText("Categoria: Flyweight")
+    const categoryText = screen.getByText("Flyweight")
     const fighterOne = screen.getByText("Felipe Bunes")
     const fighterTwo = screen.getByText("David Casas")
 

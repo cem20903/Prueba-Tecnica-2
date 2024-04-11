@@ -8,7 +8,6 @@ const headers = {
   "x-rapidapi-key": "cecabd3c95709115a8f71f15850fdb69",
 }
 
-
 async function getFights() {
 
   const SEASON_YEAR = 2024

@@ -1,10 +1,8 @@
 <script setup lang="ts">
-import { defineProps } from "vue"
-
-defineProps({ fighter: { type: Object, required: true } })
+defineProps({ fight: { type: Object, required: true } })
 
 function goToDetails(id: number) {
-  // Ir a detalle De combate
+  alert("Proximamente")
 }
 </script>
 

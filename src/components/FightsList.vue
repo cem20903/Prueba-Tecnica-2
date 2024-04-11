@@ -13,8 +13,8 @@ onMounted(async () => {
 
 <template>
   <div class="fights--container">
-    <template v-for="(fighter, key) in fightList" :key="key">
-      <FighterCard :fighter="fighter" />
+    <template v-for="(fight, key) in fightList" :key="key">
+      <FightCard :fight="fight" />
     </template>
   </div>
 </template>

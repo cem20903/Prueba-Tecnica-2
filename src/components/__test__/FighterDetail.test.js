@@ -2,6 +2,7 @@ import { fireEvent, render, screen } from "@testing-library/vue"
 import { createRouter, createWebHistory } from "vue-router"
 import { routes } from "../../router"
 import App from "../../App.vue"
+import { createPinia } from "pinia"
 import "@testing-library/jest-dom"
 
 const fetchMock = jest.fn()
@@ -59,8 +60,6 @@ jest.setTimeout(60000)
 
 describe("Fights Detail", () => {
   it("Should see the correct fights list", async () => {
-    jest.setTimeout(60000)
-
     router.push("/")
 
     const mockFetch = Promise.resolve({
@@ -74,9 +73,11 @@ describe("Fights Detail", () => {
     fetchMock.mockImplementationOnce(() => mockFetch)
     fetchMock.mockImplementationOnce(() => mockFetchFighterInfo)
 
+    const pinia = createPinia()
+
     render(App, {
       global: {
-        plugins: [router],
+        plugins: [router, pinia],
       },
     })
 
