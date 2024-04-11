@@ -2,15 +2,19 @@
 import { onMounted, ref, computed } from "vue"
 import { useRoute } from "vue-router"
 import { getFighterById } from "@/services/fight"
+import { useUserStore } from "../stores/user.js"
 
 const POUND_TO_KILOGRAM = 0.453592
 
+const store = useUserStore()
 const router = useRoute()
+
 const fighter = ref({})
 
 onMounted(async () => {
   const response = await getFighterById(router.params.id)
   fighter.value = response
+  store.addFighterVisited()
 })
 
 const weightInKG = computed(() => {
