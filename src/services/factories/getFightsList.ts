@@ -1,4 +1,4 @@
-function getFighterList (fighterList: []) {
+function getFightsList (fighterList: []) {
   return fighterList.map(fightInfo => {
   
   const { fighters, category, id } = fightInfo
@@ -11,4 +11,4 @@ function getFighterList (fighterList: []) {
   }).slice(0, 20)
 }
 
-export default getFighterList
+export default getFightsList
